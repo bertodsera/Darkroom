@@ -2,6 +2,7 @@
 #include <NewEncoder.h>
 #include <TM1637Display.h>
 #include <PushButton.h>
+#include <Buzzer.h>
 
 // Various debug services, uncomment to enable
 #define _DEBUG
@@ -345,25 +346,6 @@ class FunctionalUnit {
       #endif
       return state;
     };         
-};
-
-
-class Buzzer {
-    uint8_t _pin;
-  public:
-    Buzzer::Buzzer( uint8_t pin ) {
-      _pin = pin;
-    };
-
-    Buzzer::init() {
-      pinMode(_pin,OUTPUT);
-    }; 
-
-    Buzzer::tic() {
-      tone(_pin,50);
-      delay(20);
-      noTone(_pin);
-    }
 };
 
 

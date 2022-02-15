@@ -4,7 +4,7 @@
  * Manage push button
  *
  * Author: berto.d.sera@gmail.com
- * Version 1.0
+ * 15.02.2022 - Version 1.0
  *
  */
 
