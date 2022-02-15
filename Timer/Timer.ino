@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include <NewEncoder.h>
 #include <TM1637Display.h>
-#include <PushButton.h>
 #include <Buzzer.h>
+#include <Switcher.h>
+#include <RotaryEncoder.h>
 
 // Various debug services, uncomment to enable
 #define _DEBUG
@@ -152,150 +152,10 @@ class Display {
    };   
 };
 
-class RotaryEncoder {
-  private:
-    NewEncoder _encoder;
-    int16_t    _value;
-    int16_t    _minVal;
-    int16_t    _maxVal;
-
-  public:
-    RotaryEncoder::RotaryEncoder(uint8_t aPin, uint8_t bPin, int16_t minValue, int16_t maxValue, int16_t initialValue, uint8_t type = FULL_PULSE) :
-      _encoder(aPin, bPin, minValue, maxValue, initialValue, type) {
-      _value  = initialValue;
-      _minVal = minValue;
-      _maxVal = maxValue; 
-    };
-
-    void RotaryEncoder::init () {
-      NewEncoder::EncoderState state;
-      Serial.println("Starting Encoder");
-
-      if (!_encoder.begin()) {
-        Serial.println("  Encoder Failed to Start. Check pin assignments and available interrupts. Aborting.");
-        while (1) {
-          yield();
-        }
-      } else {
-        _encoder.getState(state);
-        Serial.print("  Encoder Successfully Started at value = ");
-        _value = state.currentValue;
-        Serial.println(_value);
-      };
-    };
 
 
-    boolean RotaryEncoder::pollValue () {
-      NewEncoder::EncoderState currentEncoderState;
-
-      if (_encoder.getState(currentEncoderState)) {
-        if (currentEncoderState.currentValue != _value) {
-          _value = currentEncoderState.currentValue; 
-          #ifdef _DEBUG
-            Serial.println("... ... RotaryEncoder::pollValue");
-            Serial.print("... ... ... value: ");
-            Serial.println(_value);
-            Serial.println();
-          #endif
-          return true;
-        };
-      };
-      return false;
-    };
-
-    boolean RotaryEncoder::newSettings(int16_t newMin, int16_t newMax, int16_t newCurrent) {
-      NewEncoder::EncoderState state; 
-      #ifdef _DEBUG
-        Serial.println("... ... RotaryEncoder::newSettings");
-        Serial.print("... ... ... newMin: ");
-        Serial.println(newMin);
-        Serial.print("... ... ... newMax: ");
-        Serial.println(newMax);                  
-        Serial.print("... ... ... newCurrent: ");
-        Serial.println(newCurrent);
-        Serial.println();
-      #endif           
-      _encoder.newSettings(newMin, newMax, newCurrent, state);
-      _value  = newCurrent;
-      _minVal = newMin;
-      _maxVal = newMax;        
-    };
-
-    boolean RotaryEncoder::newValue(int16_t newCurrent) {
-      NewEncoder::EncoderState state; 
-      #ifdef _DEBUG
-        Serial.println("... ... RotaryEncoder::newValue");
-        Serial.print("... ... ... newCurrent: ");
-        Serial.println(newCurrent);
-        Serial.println();
-      #endif       
-      _encoder.newSettings(_minVal, _maxVal, newCurrent, state);
-      _value  = newCurrent;     
-    };     
-
-    int16_t RotaryEncoder::getValue () { return _value; };
-};
 
 
-class LedSignal {
-  private:
-    uint8_t _pin;
-  public:
-    LedSignal::LedSignal(uint8_t pin) {
-      _pin = pin;
-      pinMode(_pin, OUTPUT);
-    };
-
-    void LedSignal::switchOn() {
-      digitalWrite(_pin, HIGH);
-    };
-
-    void LedSignal::switchOff() {
-      digitalWrite(_pin, LOW);
-    };    
-};
-
-
-class Switcher {
-  private:
-    PushButton _button;
-    LedSignal  _led;
-    boolean    _isOn = false;
-    
-  public:
-    Switcher::Switcher(uint8_t buttonPin, uint8_t ledPin) :
-      _button(buttonPin),
-      _led(ledPin) {};
-
-    boolean Switcher::poll() {
-      return _button.isBeingPressed();
-    };  
-
-    void Switcher::setOn() {
-      _led.switchOn();
-      _isOn = true;
-    };     
-
-    void Switcher::setOff() {
-      _led.switchOff();
-      _isOn = false;
-    };      
-
-    boolean Switcher::isOn() {
-      return _isOn;
-    };  
-
-    // An ARCHIVE/RESTORE command used to manage the visibility of a switcher's object state.
-    //   ON LEDs get switched off to be masked but keep their on state in memory
-    //   Masked LEDs that return to visible state get switched back on according to their state in memory
-    void Switcher::setVisible(boolean targetState) {
-      if (_isOn) {
-        if (targetState) { this->_led.switchOn(); }
-        else { this->_led.switchOff(); }
-      }     
-    };   
-  
-};
 
 enum WhichButton { modeButton, sideButton, noButton};
 
