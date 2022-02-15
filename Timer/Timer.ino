@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <NewEncoder.h>
 #include <TM1637Display.h>
+#include <PushButton.h>
 
 // Various debug services, uncomment to enable
 #define _DEBUG
@@ -234,31 +235,6 @@ class RotaryEncoder {
     int16_t RotaryEncoder::getValue () { return _value; };
 };
 
-class PushButton {
-  private:
-    uint8_t       _pin;
-    unsigned long _lastPressure = 0;
-
-    boolean PushButton::isBeingPressedUnfiltered() {
-      int buttonState = digitalRead(_pin);
-      return (buttonState == LOW);
-    };
-  public:
-    PushButton::PushButton(uint8_t pin) {
-      _pin = pin;
-      // avoid the need for a resistor by using the inbuilt pin resistor
-      pinMode(_pin, INPUT_PULLUP); 
-    };
-
-    boolean PushButton::isBeingPressed() {
-      unsigned long currentTime = millis();
-      if (this->isBeingPressedUnfiltered() && (currentTime - _lastPressure > 1000)) {
-        _lastPressure = currentTime;
-        return true;
-      };
-      return false; 
-    };
-};
 
 class LedSignal {
   private:
