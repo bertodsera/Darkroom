@@ -60,7 +60,9 @@ jobs:
 
     - name: Build example
       run:
-        arduino-cli compile --libraries /home/runner/work/Darkroom/Timer/library --fqbn arduino:avr:mega:cpu=atmega2560 $PWD/Timer/Timer.ino --warnings=all
+        |
+        cp /home/runner/work/Darkroom/Timer/library/* /home/runner/libraries
+        arduino-cli compile --fqbn arduino:avr:mega:cpu=atmega2560 $PWD/Timer/Timer.ino --warnings=all
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
