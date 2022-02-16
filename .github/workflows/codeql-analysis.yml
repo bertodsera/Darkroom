@@ -60,6 +60,11 @@ jobs:
 
     - name: Build example
       run:
+        |
+        # install additional libs
+        arduino-cli lib install TM1637
+        export ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+        arduino-cli lib install --git-url https://github.com/gfvalvo/NewEncoder.git
         arduino-cli compile --library $PWD/Timer/library --fqbn arduino:avr:mega:cpu=atmega2560 $PWD/Timer/Timer.ino --warnings=all
 
     - name: Perform CodeQL Analysis
