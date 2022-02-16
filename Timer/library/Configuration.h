@@ -30,18 +30,19 @@
 // Cable B
 //  Buttons signals
 // ================
-#define TIMERMODEBUTTONPIN  22    // Orange
-#define TIMERSIDEBUTTONPIN  24    // Red
-#define SOURCEMODEBUTTONPIN 26    // Brown
-#define SOURCESIDEBUTTONPIN 28    // Black
-#define TARGETMODEBUTTONPIN 30    // White
-#define TARGETSIDEBUTTONPIN 32    // Grey
-#define BRIGHTNESSBUTTONPIN 34    // Purple
-#define EXECUTEBUTTONPIN    36    // Blue
+#define TIMERMODEBUTTONPIN  36    // Orange
+#define TIMERSIDEBUTTONPIN  34    // Red
+#define SOURCEMODEBUTTONPIN 32    // Brown
+#define SOURCESIDEBUTTONPIN 30    // Black
+#define TARGETMODEBUTTONPIN 28    // White
+#define TARGETSIDEBUTTONPIN 26    // Grey
+#define BRIGHTNESSBUTTONPIN 24    // Purple
+#define EXECUTEBUTTONPIN    22    // Blue
 
 // Cable C
 //  LED signals
 // ================
+#define ENCODEREBUTTONPIN   23    // TODO put a wire in and not colour
 #define TIMERMODEBUTTONLED  25    // Black
 #define TIMERSIDEBUTTONLED  27    // White
 #define SOURCEMODEBUTTONLED 29    // Grey

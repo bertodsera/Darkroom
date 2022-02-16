@@ -28,6 +28,8 @@ class TimerInterface {
     FocusTarget   _focus = timerUI;
     boolean       _rightSegment = true;
     PushButton    _execute;
+    Switcher      _brightness;
+    PushButton    _encoderButton;
     Buzzer        _sound;
 
   public:

@@ -26,6 +26,8 @@ TimerInterface::TimerInterface() :
                                   TARGETSIDEBUTTONPIN, TARGETSIDEBUTTONLED) },
     _encoderObj(ROTARYENCODERPINA, ROTARYENCODERPINB, TIMERENCODERMIN, TIMERENCODERMAX, TIMERENCODERSTART, FULL_PULSE),
     _execute(EXECUTEBUTTONPIN),
+    _brightness(BRIGHTNESSBUTTONPIN, BRIGHTNESSBUTTONLED),
+    _encoderButton(ENCODEREBUTTONPIN),
     _sound(BEEPER) {};
 
 void TimerInterface::init() {
@@ -112,3 +114,33 @@ void TimerInterface::updateFromEncoder (uint8_t target, boolean rightSide) {
   };
 }
 
+// enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
+void TimerInterface::focusEncoderOn (FocusTarget destination, boolean rightSide) {
+  _focus = destination;
+
+  // input from encoder, output on timer LED panel, format hh:mm or mm:ss
+  //   source and destination panels are off
+  if (destination==timerUI) {
+    if (rightSide) {
+    } else {
+    }
+  // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
+  //   timer is off
+  //   source and destination are on
+  } else if (destination==sourceUI) {
+    if (rightSide) {
+    } else {
+    }
+  // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
+  //   timer is off
+  //   source and destination are on
+  } else if (destination==targetUI) {
+    if (rightSide) {
+    } else {
+    }
+  // input from encoder, output on LED panels' brightness
+  //   timer, source and destination are on
+  //   rightSide is meaningless for this context
+  } else if (destination==brightnessUI) {
+  };
+}
