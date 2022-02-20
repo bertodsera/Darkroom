@@ -29,44 +29,54 @@
 // Cable A
 //  LED Displays and encoder
 // =========================
-#define ROTARYENCODERPINA    2    // Brown
-#define ROTARYENCODERPINB    3    // Black
-#define TIMERCLK             8    // White
-#define TIMERDIO             9    // Grey
-#define SOURCECLK           10    // Purple
-#define SOURCEDIO           11    // Blue
-#define TARGETCLK           12    // Green
-#define TARGETDIO           13    // Yellow
+#define ROTARYENCODERPINA    2    // Orange
+#define ROTARYENCODERPINB    3    // Yellow
+#define TIMERCLK             8    // Green
+#define TIMERDIO             9    // Blue
+#define TARGETCLK           10    // Purple
+#define TARGETDIO           11    // Grey
+#define SOURCECLK           12    // White
+#define SOURCEDIO           13    // Black
 
 // Cable B
 //  Buttons signals
 // ================
-#define TIMERMODEBUTTONPIN  36    // Orange
-#define TIMERSIDEBUTTONPIN  34    // Red
-#define SOURCEMODEBUTTONPIN 32    // Brown
-#define SOURCESIDEBUTTONPIN 30    // Black
-#define TARGETMODEBUTTONPIN 28    // White
-#define TARGETSIDEBUTTONPIN 26    // Grey
-#define BRIGHTNESSBUTTONPIN 24    // Purple
-#define EXECUTEBUTTONPIN    22    // Blue
+#define TIMERSIDEBUTTONPIN  36    // Orange
+#define TIMERMODEBUTTONPIN  34    // Yellow
+#define TARGETSIDEBUTTONPIN 32    // Green
+#define TARGETMODEBUTTONPIN 30    // Blue
+#define SOURCESIDEBUTTONPIN 28    // Purple
+#define SOURCEMODEBUTTONPIN 26    // Grey
+#define BRIGHTNESSBUTTONPIN 24    // White
+#define EXECUTEBUTTONPIN    22    // Black
 
 // Cable C
 //  LED signals
 // ================
-#define ENCODEREBUTTONPIN   23    // TODO put a wire in and not colour
-#define TIMERMODEBUTTONLED  25    // Black
-#define TIMERSIDEBUTTONLED  27    // White
-#define SOURCEMODEBUTTONLED 29    // Grey
-#define SOURCESIDEBUTTONLED 31    // Brown
-#define TARGETMODEBUTTONLED 33    // Blue
-#define TARGETSIDEBUTTONLED 35    // Green
-#define BRIGHTNESSBUTTONLED 37    // Yellow
+#define ENCODEREBUTTONPIN   23    // Orange
+#define TIMERMODEBUTTONLED  25    // Yellow
+#define TIMERSIDEBUTTONLED  27    // Green
+#define SOURCEMODEBUTTONLED 29    // Blue
+#define SOURCESIDEBUTTONLED 31    // Purple
+#define TARGETMODEBUTTONLED 33    // Grey
+#define TARGETSIDEBUTTONLED 35    // White
+#define BRIGHTNESSBUTTONLED 37    // Black
+
 
 #define BEEPER              53    // Orange (internal short cable)
 #define RELAYENLARGER       52    // (internal short cable)
 
 // Cable D
 //  LED grounds (just a collector that eventually lands into ground)
+// Orange: ground
+// All following cables goes to a dedicated 2kΩ resistor, then ground
+// Yellow: TIMERMODEBUTTONLED
+// Green:  TIMERSIDEBUTTONLED
+// Blue;   SOURCEMODEBUTTONLED
+// Purple: SOURCESIDEBUTTONLED
+// Grey:   TARGETMODEBUTTONLED
+// White:  TARGETSIDEBUTTONLED
+// Black:  BRIGHTNESSBUTTONLED
 
 // Cable E
 //  Various grounds (just a collector that eventually lands into ground)
