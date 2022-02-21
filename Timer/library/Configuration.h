@@ -42,29 +42,29 @@
 //  Buttons signals
 // ================
 #define TIMERSIDEBUTTONPIN  36    // Orange
-#define TIMERMODEBUTTONPIN  34    // Yellow
-#define TARGETSIDEBUTTONPIN 32    // Green
-#define TARGETMODEBUTTONPIN 30    // Blue
-#define SOURCESIDEBUTTONPIN 28    // Purple
-#define SOURCEMODEBUTTONPIN 26    // Grey
-#define BRIGHTNESSBUTTONPIN 24    // White
-#define EXECUTEBUTTONPIN    22    // Black
+#define TIMERMODEBUTTONPIN  38    // Yellow
+#define TARGETSIDEBUTTONPIN 40    // Green
+#define TARGETMODEBUTTONPIN 42    // Blue
+#define SOURCESIDEBUTTONPIN 44    // Purple
+#define SOURCEMODEBUTTONPIN 46    // Grey
+#define BRIGHTNESSBUTTONPIN 48    // White
+#define EXECUTEBUTTONPIN    50    // Black
 
 // Cable C
 //  LED signals
 // ================
-#define ENCODEREBUTTONPIN   23    // Orange
-#define TIMERMODEBUTTONLED  25    // Yellow
-#define TIMERSIDEBUTTONLED  27    // Green
-#define SOURCEMODEBUTTONLED 29    // Blue
-#define SOURCESIDEBUTTONLED 31    // Purple
-#define TARGETMODEBUTTONLED 33    // Grey
-#define TARGETSIDEBUTTONLED 35    // White
-#define BRIGHTNESSBUTTONLED 37    // Black
+#define ENCODEREBUTTONPIN   37    // Orange
+#define TIMERMODEBUTTONLED  39    // Yellow
+#define TIMERSIDEBUTTONLED  41    // Green
+#define SOURCEMODEBUTTONLED 43    // Blue
+#define SOURCESIDEBUTTONLED 45    // Purple
+#define TARGETMODEBUTTONLED 47    // Grey
+#define TARGETSIDEBUTTONLED 49    // White
+#define BRIGHTNESSBUTTONLED 51    // Black
 
 
-#define BEEPER              53    // Orange (internal short cable)
-#define RELAYENLARGER       52    // (internal short cable)
+#define BEEPER              53    // Brown (internal short cable)
+#define RELAYENLARGER       52    // Brown (internal long cable)
 
 // Cable D
 //  LED grounds (just a collector that eventually lands into ground)
