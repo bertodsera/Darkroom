@@ -1,6 +1,6 @@
 # Darkroom
 
-This is a general container for small appliances I'm building for my analog darkroom acrtivities. 
+This is a general container for small appliances I'm building for my analog darkroom activities. 
 
 Currently just an exposure timer, there might be some sort of chemical agitation device in the future, for film and paper treatment.
 
