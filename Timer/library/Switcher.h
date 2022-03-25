@@ -33,16 +33,18 @@ class Switcher {
     boolean    _isOn = false;
 
   public:
-    Switcher::Switcher(uint8_t buttonPin, uint8_t ledPin);
-    boolean Switcher::poll();
-    void Switcher::setOn();
-    void Switcher::setOff();
-    boolean Switcher::isOn();
+    Switcher(uint8_t buttonPin, uint8_t ledPin);
+    boolean poll();
+    void setOn();
+    void setOff();
+    boolean isOn();
 
     // An ARCHIVE/RESTORE command used to manage the visibility of a switcher's object state.
     //   ON LEDs get switched off to be masked but keep their on state in memory
     //   Masked LEDs that return to visible state get switched back on according to their state in memory
-    void Switcher::setVisible(boolean targetState);
+    void setVisible(boolean targetState);
+
+    void changeState();
 };
 
 #endif /* SWITCHER_H */

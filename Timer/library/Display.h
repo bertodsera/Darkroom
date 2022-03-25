@@ -39,19 +39,19 @@ class Display {
     int16_t _left;
     int16_t _leftMax;       // top displayable left value (99)
 
-    FlowState Display::getState(int16_t value, boolean rightSide);
-    void Display::rightSetBottom();
-    void Display::rightSetTop();
-    void Display::printToLedPanel();
+    FlowState getState(int16_t value, boolean rightSide);
+    void rightSetBottom();
+    void rightSetTop();
+    void printToLedPanel();
 
   public:
-    Display::Display(uint8_t pinClk, uint8_t pinDIO, int16_t lowThresholdValue, int16_t highThresholdValue, int16_t leftMaxValue);
-    void Display::init();
+    Display(uint8_t pinClk, uint8_t pinDIO, int16_t lowThresholdValue, int16_t highThresholdValue, int16_t leftMaxValue);
+    void init();
 
-    void Display::setBrightness(uint8_t value);
-    void Display::setVisible(boolean targetState);
+    void setBrightness(uint8_t value);
+    void setVisible(boolean targetState);
     // Update display and return possible settings change for encoder
-    FlowState Display::getUpdate(int16_t value, boolean rightSide);
+    FlowState getUpdate(int16_t value, boolean rightSide);
 };
 
 #endif /* DISPLAY_H */

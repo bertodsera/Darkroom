@@ -28,9 +28,9 @@ class LedSignal {
   private:
     uint8_t _pin;
   public:
-    LedSignal::LedSignal(uint8_t pin);
-    void LedSignal::switchOn();
-    void LedSignal::switchOff();
+    LedSignal(uint8_t pin);
+    void switchOn();
+    void switchOff();
 };
 
 #endif /* LEDSIGNAL_H */

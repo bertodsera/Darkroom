@@ -33,13 +33,13 @@ class RotaryEncoder {
     int16_t    _maxVal;
 
   public:
-    RotaryEncoder::RotaryEncoder(uint8_t aPin, uint8_t bPin, int16_t minValue, int16_t maxValue, int16_t initialValue, uint8_t type = FULL_PULSE);
-    void RotaryEncoder::init ();
+    RotaryEncoder(uint8_t aPin, uint8_t bPin, int16_t minValue, int16_t maxValue, int16_t initialValue, uint8_t type = FULL_PULSE);
+    void init ();
 
-    boolean RotaryEncoder::pollValue ();
-    boolean RotaryEncoder::newSettings(int16_t newMin, int16_t newMax, int16_t newCurrent);
-    boolean RotaryEncoder::newValue(int16_t newCurrent);
-    int16_t RotaryEncoder::getValue ();
+    boolean pollValue ();
+    boolean newSettings(int16_t newMin, int16_t newMax, int16_t newCurrent);
+    boolean newValue(int16_t newCurrent);
+    int16_t getValue ();
 };
 
 #endif /* ROTARYENCODER_H */

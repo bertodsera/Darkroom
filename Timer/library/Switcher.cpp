@@ -53,3 +53,12 @@ void Switcher::setVisible(boolean targetState) {
     else { this->_led.switchOff(); }
   }
 }
+
+
+void Switcher::changeState() {
+  if (this->isOn()) {
+    this->setOff();
+  } else {
+    this->setOn();
+  }
+}

@@ -43,10 +43,10 @@
 // ================
 #define TIMERSIDEBUTTONPIN  36    // Orange
 #define TIMERMODEBUTTONPIN  38    // Yellow
-#define TARGETSIDEBUTTONPIN 40    // Green
-#define TARGETMODEBUTTONPIN 42    // Blue
-#define SOURCESIDEBUTTONPIN 44    // Purple
-#define SOURCEMODEBUTTONPIN 46    // Grey
+#define SOURCESIDEBUTTONPIN 40    // Green
+#define SOURCEMODEBUTTONPIN 42    // Blue
+#define TARGETSIDEBUTTONPIN 44    // Purple
+#define TARGETMODEBUTTONPIN 46    // Grey
 #define BRIGHTNESSBUTTONPIN 48    // White
 #define EXECUTEBUTTONPIN    50    // Black
 

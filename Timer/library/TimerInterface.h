@@ -44,22 +44,22 @@ class TimerInterface {
     Buzzer        _sound;
 
   public:
-    TimerInterface::TimerInterface();
-    void TimerInterface::init();
+    TimerInterface();
+    void init();
 
-    void TimerInterface::setBrightness(uint8_t value);
+    void setBrightness(uint8_t value);
 
     // enum WhichButton { modeButton, sideButton, noButton};
-    void TimerInterface::pollButtons ();
+    void pollButtons ();
 
 
     // This function updates the display and returns information on potential
     //   further operations to be performed on the encoder object
     //   ref: FlowState { countOverflow, withinBoundaries, countUnderflow, violationOfHighBoundary, violationOfLowBoundary, nonRelevant };
-    void TimerInterface::updateFromEncoder (uint8_t target, boolean rightSide);
+    void updateFromEncoder (uint8_t target, boolean rightSide);
 
     // enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
-    void TimerInterface::focusEncoderOn (FocusTarget destination, boolean rightSide);
+    void focusEncoderOn (FocusTarget destination, boolean rightSide);
 };
 
 #endif /* TIMERINTERFACE_H */

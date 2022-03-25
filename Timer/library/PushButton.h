@@ -29,10 +29,10 @@ class PushButton {
     uint8_t       _pin;
     unsigned long _lastPressure = 0;
 
-    boolean PushButton::isBeingPressedUnfiltered();
+    boolean isBeingPressedUnfiltered();
   public:
-    PushButton::PushButton(uint8_t pin);
-    boolean PushButton::isBeingPressed();
+    PushButton(uint8_t pin);
+    boolean isBeingPressed();
 };
 
 #endif /* PUSHBUTTON_H */

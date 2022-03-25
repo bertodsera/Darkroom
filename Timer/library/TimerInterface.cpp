@@ -1,12 +1,12 @@
 /*
  * =======================================================================================================================
- * This file is part of Darkroom.
- * Darkroom is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
+ * This file is part of DaruiElementroom.
+ * DaruiElementroom is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- * Darkroom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * DaruiElementroom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with Darkroom.
+ * You should have received a copy of the GNU General Public License along with DaruiElementroom.
  * If not, see <https://www.gnu.org/licenses/>.
  * =======================================================================================================================
  *
@@ -25,7 +25,7 @@
 
 TimerInterface::TimerInterface() :
   // Init array of Display objects according to their constructor
-  // Display::Display(uint8_t pinClk, uint8_t pinDIO, int lowThreshold, int highThreshold, int leftMaxValue) :
+  // Display::Display(uint8_t pinCluiElement, uint8_t pinDIO, int lowThreshold, int highThreshold, int leftMaxValue) :
   _functionalUnit{ FunctionalUnit(TIMERCLK,  TIMERDIO,  TIMERENCODERMIN, TIMERENCODERMAX, ENCODERLEFTMAX,
                                   TIMERMODEBUTTONPIN, TIMERMODEBUTTONLED,
                                   TIMERSIDEBUTTONPIN, TIMERSIDEBUTTONLED),
@@ -43,48 +43,60 @@ TimerInterface::TimerInterface() :
 
 void TimerInterface::init() {
   Serial.println("Starting Displays ");
-  for(int k=0; k <= 2; k++) {
+  for(int uiElement=0; uiElement <= 2; uiElement++) {
     Serial.print("  Display: ");
-    Serial.println(k);
-    _functionalUnit[k].init();
+    Serial.println(uiElement);
+    _functionalUnit[uiElement].init();
   }
   // _encoderObj.init();
 }
 
 void TimerInterface::setBrightness(uint8_t value) {
-  for(int k=0; k <= 2; k++) {
-    _functionalUnit[k].setBrightness(value);
+  for(int uiElement=0; uiElement <= 2; uiElement++) {
+    _functionalUnit[uiElement].setBrightness(value);
   }
 };
 
 // enum WhichButton { modeButton, sideButton, noButton};
 void TimerInterface::pollButtons () {
   WhichButton whichPressed = noButton;
-  for (int k=0; k <= 2; k++) {
-    whichPressed = _functionalUnit[k].poll();
+  for (int uiElement=0; uiElement <= 2; uiElement++) {
+    whichPressed = _functionalUnit[uiElement].poll();
     if (whichPressed != noButton) {
       // manage the button pressure
       _sound.tic();
       #ifdef _DEBUG
         Serial.println("... ... TimerInterface::pollButtons");
-        if (k==TIMER_UI) {
+        if (uiElement==TIMER_UI) {
           Serial.print("... ... ... TIMER ");
           if (whichPressed==modeButton) { Serial.println("mode");
           } else { Serial.println("side"); };
 
-        } else if (k==SOURCE_UI) {
+        } else if (uiElement==SOURCE_UI) {
           Serial.print("... ... ... SOURCE ");
           if (whichPressed==modeButton) { Serial.println("mode");
           } else { Serial.println("side"); };
 
-        } else if (k==TARGET_UI) {
+        } else if (uiElement==TARGET_UI) {
           Serial.print("... ... ... TARGET ");
           if (whichPressed==modeButton) {Serial.println("mode");
           } else { Serial.println("side"); };
         };
         Serial.println("======================================================");
       #endif
+      if (whichPressed == modeButton) {
+        _functionalUnit[uiElement].modeChangeState();
+      } else if (whichPressed == sideButton) {
+        _functionalUnit[uiElement].sideChangeState();
+      }
     };
+    if (_execute.isBeingPressed()) {
+      _sound.tic();
+    }
+    if (_brightness.poll()) {
+      _sound.tic();
+      _brightness.changeState();
+    }
   };
 }
 

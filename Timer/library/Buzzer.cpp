@@ -26,12 +26,12 @@ Buzzer::Buzzer( uint8_t pin ) {
   _pin = pin;
 }
 
-Buzzer::init() {
+void Buzzer::init() {
   pinMode(_pin,OUTPUT);
 }
 
-Buzzer::tic() {
-  tone(_pin,50);
-  delay(20);
+void Buzzer::tic() {
+  tone(_pin,5000);
+  delay(50);
   noTone(_pin);
 }

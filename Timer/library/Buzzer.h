@@ -27,11 +27,11 @@
 class Buzzer {
     uint8_t _pin;
   public:
-    Buzzer::Buzzer( uint8_t pin );
+    Buzzer( uint8_t pin );
 
-    Buzzer::init();
+    void init();
 
-    Buzzer::tic();
+    void tic();
 };
 
 #endif /* BUZZER_H */

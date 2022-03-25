@@ -65,3 +65,11 @@ FlowState FunctionalUnit::updateLedDisplay (int16_t value, boolean rightSide) {
   #endif
   return state;
 }
+
+void FunctionalUnit::modeChangeState() {
+  _mode.changeState();
+}
+
+void FunctionalUnit::sideChangeState() {
+  _side.changeState();
+}
