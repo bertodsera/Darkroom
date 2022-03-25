@@ -84,19 +84,31 @@ void TimerInterface::pollButtons () {
         };
         Serial.println("======================================================");
       #endif
+
+      FocusTarget target = this->whichIsActive(uiElement);
+      // Manage change in focus if needed
+      if (target != _focus) {
+        this->focusEncoderOn(target);
+      }
+
       if (whichPressed == modeButton) {
         _functionalUnit[uiElement].modeChangeState();
       } else if (whichPressed == sideButton) {
         _functionalUnit[uiElement].sideChangeState();
       }
     };
-    if (_execute.isBeingPressed()) {
-      _sound.tic();
-    }
+
     if (_brightness.poll()) {
       _sound.tic();
       _brightness.changeState();
-    }
+      this->focusEncoderOn(brightnessUI);
+    };
+
+    if (_execute.isBeingPressed()) {
+      _sound.tic();
+      // check this, it could be a focus issue
+      this->expose();
+    };
   };
 }
 
@@ -166,4 +178,17 @@ void TimerInterface::focusEncoderOn (FocusTarget destination, boolean rightSide)
   //   rightSide is meaningless for this context
   } else if (destination==brightnessUI) {
   };
+}
+
+// enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
+FocusTarget TimerInterface::whichIsActive( int index ) {
+  if (index == TIMER_UI) { return timerUI; }
+  else if (index == SOURCE_UI) { return sourceUI; }
+  else if (index == TARGET_UI) { return targetUI; }
+  else { return brightnessUI; }
+}
+
+
+// Exposure
+void TimerInterface::expose() {
 }

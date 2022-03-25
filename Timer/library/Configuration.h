@@ -98,5 +98,6 @@
 #define TIMER_UI       0
 #define SOURCE_UI      1
 #define TARGET_UI      2
+#define BRIGHTNESS_UI  3
 
 #endif /* CONFIGURATION_H */

@@ -59,7 +59,11 @@ class TimerInterface {
     void updateFromEncoder (uint8_t target, boolean rightSide);
 
     // enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
-    void focusEncoderOn (FocusTarget destination, boolean rightSide);
+    FocusTarget whichIsActive( int index );
+    void focusEncoderOn (FocusTarget destination, boolean rightSide = true);
+
+    // Exposure
+    void expose();
 };
 
 #endif /* TIMERINTERFACE_H */
