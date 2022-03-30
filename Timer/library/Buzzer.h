@@ -32,6 +32,7 @@ class Buzzer {
     void init();
 
     void tic();
+    void storeSound();
 };
 
 #endif /* BUZZER_H */

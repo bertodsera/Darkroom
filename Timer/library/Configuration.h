@@ -31,12 +31,12 @@
 // =========================
 #define ROTARYENCODERPINA    2    // Orange
 #define ROTARYENCODERPINB    3    // Yellow
-#define TIMERCLK             8    // Green
-#define TIMERDIO             9    // Blue
-#define TARGETCLK           10    // Purple
-#define TARGETDIO           11    // Grey
-#define SOURCECLK           12    // White
-#define SOURCEDIO           13    // Black
+#define TIMERCLK             4    // Green
+#define TIMERDIO             5    // Blue
+#define TARGETCLK            6    // Purple
+#define TARGETDIO            7    // Grey
+#define SOURCECLK            8    // White
+#define SOURCEDIO            9    // Black
 
 // Cable B
 //  Buttons signals

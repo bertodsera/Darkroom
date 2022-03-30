@@ -43,15 +43,10 @@ class TimerInterface {
     PushButton    _encoderButton;
     Buzzer        _sound;
 
-  public:
-    TimerInterface();
-    void init();
-
     void setBrightness(uint8_t value);
 
     // enum WhichButton { modeButton, sideButton, noButton};
     void pollButtons ();
-
 
     // This function updates the display and returns information on potential
     //   further operations to be performed on the encoder object
@@ -64,6 +59,10 @@ class TimerInterface {
 
     // Exposure
     void expose();
+  public:
+    TimerInterface();
+    void init();
+    void run();
 };
 
 #endif /* TIMERINTERFACE_H */

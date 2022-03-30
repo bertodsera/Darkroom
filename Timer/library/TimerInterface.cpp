@@ -86,22 +86,26 @@ void TimerInterface::pollButtons () {
       #endif
 
       FocusTarget target = this->whichIsActive(uiElement);
-      // Manage change in focus if needed
+      // Manage change in focus if needed do not change anything if you are just moving focus
       if (target != _focus) {
         this->focusEncoderOn(target);
-      }
-
-      if (whichPressed == modeButton) {
-        _functionalUnit[uiElement].modeChangeState();
-      } else if (whichPressed == sideButton) {
-        _functionalUnit[uiElement].sideChangeState();
+      } else {
+        if (whichPressed == modeButton) {
+          _functionalUnit[uiElement].modeChangeState();
+        } else if (whichPressed == sideButton) {
+          _functionalUnit[uiElement].sideChangeState();
+        }
       }
     };
 
     if (_brightness.poll()) {
       _sound.tic();
-      _brightness.changeState();
-      this->focusEncoderOn(brightnessUI);
+      // get focus or change state
+      if (_focus != brightnessUI) {
+        this->focusEncoderOn(brightnessUI);
+      } else {
+        _brightness.changeState();
+      }
     };
 
     if (_execute.isBeingPressed()) {
@@ -109,6 +113,11 @@ void TimerInterface::pollButtons () {
       // check this, it could be a focus issue
       this->expose();
     };
+
+    // Encoder button, used to store/recall exposure values
+    if (_encoderButton.isBeingPressed()) {
+      _sound.storeSound();
+    }
   };
 }
 
@@ -151,33 +160,42 @@ void TimerInterface::updateFromEncoder (uint8_t target, boolean rightSide) {
 
 // enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
 void TimerInterface::focusEncoderOn (FocusTarget destination, boolean rightSide) {
-  _focus = destination;
+  if (_focus != destination ) {
+    for(int uiElement=0; uiElement <= 2; uiElement++) {
+      _functionalUnit[uiElement].setVisible(false);
+    }
+    _focus = destination;
 
-  // input from encoder, output on timer LED panel, format hh:mm or mm:ss
-  //   source and destination panels are off
-  if (destination==timerUI) {
-    if (rightSide) {
-    } else {
-    }
-  // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
-  //   timer is off
-  //   source and destination are on
-  } else if (destination==sourceUI) {
-    if (rightSide) {
-    } else {
-    }
-  // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
-  //   timer is off
-  //   source and destination are on
-  } else if (destination==targetUI) {
-    if (rightSide) {
-    } else {
-    }
-  // input from encoder, output on LED panels' brightness
-  //   timer, source and destination are on
-  //   rightSide is meaningless for this context
-  } else if (destination==brightnessUI) {
-  };
+    // input from encoder, output on timer LED panel, format hh:mm or mm:ss
+    //   source and destination panels are off
+    if (_focus==timerUI) {
+      if (rightSide) {
+      } else {
+      }
+      _functionalUnit[TIMER_UI].setVisible(true);
+    // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
+    //   timer is off
+    //   source and destination are on
+    } else if (_focus==sourceUI) {
+      if (rightSide) {
+      } else {
+      }
+      _functionalUnit[SOURCE_UI].setVisible(true);
+    // input from encoder, output on target LED panel, format in mm., from 0 to 9999 (~10m)
+    //   timer is off
+    //   source and destination are on
+    } else if (_focus==targetUI) {
+      if (rightSide) {
+      } else {
+      }
+      _functionalUnit[TARGET_UI].setVisible(true);
+    // input from encoder, output on LED panels' brightness
+    //   timer, source and destination are on
+    //   rightSide is meaningless for this context
+    } else if (_focus==brightnessUI) {
+      _brightness.setVisible(true);
+    };
+  }
 }
 
 // enum FocusTarget { timerUI, sourceUI, targetUI, brightnessUI };
@@ -191,4 +209,10 @@ FocusTarget TimerInterface::whichIsActive( int index ) {
 
 // Exposure
 void TimerInterface::expose() {
+}
+
+// That's all that gets called to run the gadget
+void TimerInterface::run() {
+  this->pollButtons();
+  delay(100);
 }

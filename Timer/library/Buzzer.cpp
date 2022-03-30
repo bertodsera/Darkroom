@@ -35,3 +35,11 @@ void Buzzer::tic() {
   delay(50);
   noTone(_pin);
 }
+
+void Buzzer::storeSound() {
+  for (int pitch=500; pitch <= 3000; pitch=pitch+25) {
+    tone(_pin,pitch);
+    delay(5);
+    noTone(_pin);
+  }
+}

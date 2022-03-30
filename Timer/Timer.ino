@@ -15,6 +15,5 @@ void setup()
 
 void loop()
 {
-  userInterface.pollButtons();
-  delay(100);
+  userInterface.run();
 }
